@@ -1,0 +1,9 @@
+# Docker Build
+docker build -it <image-name> <directory>
+
+# Docker run 
+docker run -t <image-name>
+
+# Within Docker container env: Gives all pip install modules
+pip list
+
