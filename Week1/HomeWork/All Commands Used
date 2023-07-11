@@ -7,3 +7,18 @@ docker run -t <image-name>
 # Within Docker container env: Gives all pip install modules
 pip list
 
+# Prep The PostgresSQL Image 
+docker run -it -e POSTGRES_USER="root" -e POSTGRES_PASSWORD="root" -e POSTGRESS_DB="trip_data" -v ${pwd}/trip_data:/var/lib/postgresql/data -p 5432:5432 postgres:13
+
+
+
+# Ingest.py Python script
+
+sudo python3 ingest.py \
+    --user=root \
+    --password=root \
+    --host=localhost \
+    --port=5432 \
+    --db=trip_data \
+    --table_name=green_trip_data \
+    --url="https://github.com/DataTalksClub/nyc-tlc-data/releases/download/green/green_tripdata_2019-01.csv.gz"
